@@ -4,110 +4,148 @@ import "./App.css";
 // https://weather-proxy.freecodecamp.rocks/api/current?lat=53.483959&lon=-2.244644
 // https://codemyui.com/animated-weather-icons-in-css/
 function App() {
-    const [location, setLocation] = React.useState({
-        lat: -9999,
-        lon: -9999,
-        city: "",
-        country: "",
-    });
-    const [count, setCount] = React.useState(0);
-    const [weather, setWeather] = React.useState({
-        main: "",
-        desc: "",
-        icon: "",
-    });
-    const [temperature, setTemperature] = React.useState({
-        date: "",
-        temp: 0,
-        feel: 0,
-        low: 0,
-        high: 0,
-    });
-    const useRef = React.useRef(false);
+    // const [count, setCount] = React.useState(0);
+    const [coord, setCoord] = React.useState([]);
+    const [dummy, setDummy] = React.useState({});
+    const [unit, setUnit] = React.useState("C");
+    const useRef = React.useRef(0);
 
-    const fetchData = async () => {
+    const fetchData = async (coord) => {
+        const [lat, lon] = coord;
+        // console.log("data", lat, lon);
+
         const base = "https://weather-proxy.freecodecamp.rocks/api/current";
         const params = new URLSearchParams({
-            lat: location.lat || 22.302711,
-            lon: location.lon || 114.177216,
+            lat: lat,
+            lon: lon,
         });
         const uri = base + "?" + params.toString();
-        console.log("uri", uri);
+        // console.log("w len", Object.keys(weather).length)
+        //
+        if (lat && lon && Object.keys(dummy).length === 0) {
+            const res = await fetch(uri);
 
-        // if (
-        //     params.get("lat") !== "undefined" &&
-        //     params.get("lon") !== "undefined"
-        // ) {
-        console.log(uri);
-        const res = await fetch(uri);
-
-        if (res.ok) {
+            console.log("uri", uri);
+            console.log(res.ok);
             const data = await res.json();
-            console.log("data", data);
-            location.city = data.name;
-            location.country = data.sys.country;
-            setLocation(location);
-            console.log("location", location);
-
-            setTemperature({
-                date: new Date(data.dt * 1000).toISOString(),
-                temp: data.main.temp,
-                feel: data.main.feels_like,
-                low: data.main.temp_min,
-                high: data.main.temp_max,
-            });
-
-            // setWeather({...weather, weather: {
-            //     main: data.weather[0].main,
-            //     desc: data.weather[0].description,
-            //     icon: data.weather[0].icon,
-            // }})
-            weather.main = data.weather[0].main;
-            weather.desc = data.weather[0].description;
-            weather.icon = data.weather[0].icon;
-            setWeather(weather);
-            console.log("weather", weather)
-            console.log(data.dt, new Date(data.dt), new Date(data.dt * 1000));
-            // console.log("sys", data.name, data.weather[0].icon, data.sys.country)
-            // console.log("temp", data.main.feels_like, data.main.temp_min, data.main.temp_max)
-            // }
+            setDummy(data);
         }
-        setCount((oldVal) => oldVal + 1);
     };
-
+    console.log("out", dummy);
     React.useEffect(() => {
-        if (location)
+        if (typeof coord[0] === "undefined") {
             navigator.geolocation.getCurrentPosition((position) => {
-                location.lat = position.coords.latitude;
-                location.lon = position.coords.longitude;
-                console.log("location in geo", location);
-
-                if (!useRef.current) {
-                    fetchData();
-                    useRef.current = true;
-                }
+                setCoord([position.coords.latitude, position.coords.longitude]);
+                console.log(coord);
+                // setCount((oldValue) => oldValue + 1);
+                useRef.current += 1;
             });
-    }, []);
+        }
+        fetchData(coord);
+
+    }, [coord]);
+    console.log(useRef.current, coord);
     // if (!useRef.current) {
     //     fetchData();
     //     useRef.current = true;
     // }
+    if (Object.keys(dummy).length > 0) {
+        // console.log("weather.coord.lat", weather.coord.lat)
+    }
 
-    return count ? (
+    const Temperature = () => {
+        const temperature = {
+            date: new Date(dummy.dt * 1000).toISOString(),
+            temp: unit === "C"? dummy.main.temp : switchToF(dummy.main.temp),
+            feel: unit === "C"? dummy.main.feels_like : switchToF(dummy.main.feels_like),
+            low: unit === "C"? dummy.main.temp_min : switchToF(dummy.main.temp_min),
+            high: unit === "C"? dummy.main.temp_max : switchToF(dummy.main.temp_max),
+            main: dummy.weather[0].main,
+            desc: dummy.weather[0].description,
+            icon: dummy.weather[0].icon,
+        };
+
+        return temperature ? (
+            <div className="temperature">
+                <div className="picture">{temperature.icon}</div>
+                <div className="figure1">
+                    Temperature {temperature.temp} °{unit} ( Feel Like:
+                    {temperature.feel}) °{unit}
+                </div>
+                <div className="figure2">
+                    Low {temperature.low} °{unit} --- High {temperature.low} °
+                    {unit}
+                </div>
+                <div className="desc">
+                    {temperature.main} - {temperature.desc}
+                </div>
+                <div className="date">{temperature.date}</div>
+            </div>
+        ) : (
+            <></>
+        );
+    };
+
+    const Location = () => {
+        const location = {
+            lat: dummy.coord.lat,
+            lon: dummy.coord.lon,
+            city: dummy.name,
+            country: dummy.sys.country,
+        };
+
+        return location ? (
+            <div className="location">
+                <div className="name">
+                    {location.city}, {location.country}
+                </div>
+                <div className="position">
+                    [{location.lat}, {location.lon}]
+                </div>
+            </div>
+        ) : (
+            <></>
+        );
+    };
+
+    const switchToF = (num) => {
+        return ((num * 9) / 5 + 32).toFixed(2)
+    };
+
+    const switchUnit = (unit) => {
+        console.log(unit);
+        let temp = dummy.main.temp;
+        if (unit === "F") {
+            setUnit(unit);
+            temp = switchToF(temp);
+            // fetchData(coord);
+        } else {
+            setUnit(unit);
+            temp = dummy.main.temp;
+        }
+        console.log("je", unit, temp);
+    };
+
+    return useRef.current && Object.keys(dummy).length > 0 ? (
         <div className="App">
-            Location:
-            {count}, {useRef.current}, Hello, {location.city},{" "}
-            {location.country} , [{location.lat}, {location.lon}], 
-            <br />
-            <br />
-            {temperature.date}, {temperature.temp}, {temperature.feel},{" "}
-            {temperature.low}, {temperature.high}
-            <br />
-            <br />
-            {weather.main}, {weather.desc}, <img src={weather.icon}/>
+            {/* <div className="location">
+                {JSON.stringify(dummy)}
+                <br />
+                <br />
+                {useRef.current},
+
+            </div> */}
+            <Temperature />
+            <Location />
+            <button
+                type="button"
+                onClick={() => switchUnit(`${unit === "C" ? "F" : "C"}`)}
+            >
+                Switch to {unit === "C" ? "F" : "C"}
+            </button>
         </div>
     ) : (
-        <></>
+        <>Browser not support geolocation</>
     );
 }
 
