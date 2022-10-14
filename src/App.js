@@ -142,7 +142,7 @@ function App() {
                     src="https://design-style-guide.freecodecamp.org/downloads/fcc_secondary_small.svg"
                     alt="freeCodeCamp"
                     loading="lazy"
-                /> =`&gt;` Show Local Weather 
+                /> =&gt; Show Local Weather 
             </div>
             <Location />
             <Temperature />
