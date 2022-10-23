@@ -18,6 +18,9 @@ When you are finished, include a link to your project on CodePen and click the "
 
 You can get feedback on your project by sharing it on the [freeCodeCamp forum](https://forum.freecodecamp.org/c/project-feedback/409).
 
+
+**Solution Link: https://bit.ly/3z76aG7**
+
 ---
 
 ## File Structure
@@ -42,5 +45,3 @@ package.json
 ```
 
 
-
-Solution Link: https://bit.ly/3z76aG7
