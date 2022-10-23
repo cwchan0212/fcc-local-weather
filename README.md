@@ -43,9 +43,9 @@ src/
 package-lock.json
 package.json
 ```
-###Steps to complete the project
+### Steps to complete the project
 
-1. Set states of the coordinates (**coord**), dummy data (**dummy**), temperate unit (**unit**) 
+##### 1. Set states of the coordinates (**coord**), dummy data (**dummy**), temperate unit (**unit**) 
 
 ```
     const [coord, setCoord] = React.useState([]);
@@ -53,7 +53,7 @@ package.json
     const [unit, setUnit] = React.useState("C");
 ```
 
-2. Fetch data from freecodecamp weater api 
+##### 2. Fetch data from freecodecamp weater api
 
 ```
     const fetchData = async (coord) => {
@@ -73,20 +73,21 @@ package.json
     };
 ```
 
-3. Use **useEffect** to call the function **navigator.geolocation** to obtaint the coordinates (**coord**) of the current location and fetch data with the function **fetchData**
+##### 3. Use **useEffect** to call the function **navigator.geolocation** to obtaint the coordinates (**coord**) of the current location and fetch data with the function **fetchData**
 
 ```
     React.useEffect(() => {
         if (typeof coord[0] === "undefined") {
             navigator.geolocation.getCurrentPosition((position) => {
                 setCoord([position.coords.latitude, position.coords.longitude]);
+                useRef.current += 1;
             });
         }
         fetchData(coord);
     }, [coord]);
 ```
 
-4. Create **Temperature** component to format the output of the temperature portion
+##### 4. Create **Temperature** component to format the output of the temperature portion
 
 ```
     const Temperature = () => {
@@ -111,7 +112,7 @@ package.json
         };
 ```
 
-5. Create **Location** component to format the output of the location portion
+##### 5. Create **Location** component to format the output of the location portion
 
 ```
     const Location = () => {
@@ -137,7 +138,7 @@ package.json
     };
 ```
 
-6. Calculate the temperature unit of **Celsius** to **Fahrenheit**
+###### 6. Calculate the temperature unit of **Celsius** to **Fahrenheit** with 2 decimal places
 
 ```
     const switchToF = (num) => {
@@ -145,7 +146,7 @@ package.json
     };
 ```
 
-7. Switch the temperature unit of **Celsius** to **Fahrenheit** and vice versa
+###### 7. Switch the temperature unit of **Celsius** to **Fahrenheit** and vice versa
 
 ```
     const switchUnit = (unit) => {
@@ -162,7 +163,7 @@ package.json
     };
 ```
 
-8. Return App function 
+###### 8. Return App function 
 
 ```
     return useRef.current && Object.keys(dummy).length > 0 ? (
@@ -182,7 +183,7 @@ package.json
         <div class="App">Browser not support geolocation</div>
     );
 ```
-
+---
 ### Source Code
 
 **App.js**
@@ -218,10 +219,10 @@ function App() {
         if (typeof coord[0] === "undefined") {
             navigator.geolocation.getCurrentPosition((position) => {
                 setCoord([position.coords.latitude, position.coords.longitude]);
+                useRef.current += 1;
             });
         }
         fetchData(coord);
-        useRef.current += 1;
     }, [coord]);
 
     const Temperature = () => {
@@ -333,4 +334,3 @@ function App() {
 
 export default App;
 ***
-
