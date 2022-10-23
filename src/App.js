@@ -4,7 +4,7 @@ import "./App.css";
 // https://weather-proxy.freecodecamp.rocks/api/current?lat=53.483959&lon=-2.244644
 // Weather Icons: https://github.com/Makin-Things/weather-icons
 function App() {
-    // const [count, setCount] = React.useState(0);
+    
     const [coord, setCoord] = React.useState([]);
     const [dummy, setDummy] = React.useState({});
     const [unit, setUnit] = React.useState("C");
@@ -21,8 +21,6 @@ function App() {
 
         if (lat && lon && Object.keys(dummy).length === 0) {
             const res = await fetch(uri);
-
-
             const data = await res.json();
             setDummy(data);
         }
@@ -62,12 +60,7 @@ function App() {
         return temperature ? (
             <div className="container">
                 <div className="picture">
-                    <img
-                        className="icon"
-                        src={"img/" + temperature.main.toLowerCase() + ".svg"}
-                        alt={temperature.desc}
-                        loading="lazy"
-                    />
+                    <img className="icon" src={"img/" + temperature.main.toLowerCase() + ".svg"} alt={temperature.desc} loading="lazy" />
                 </div>
                 <div className="figure1">
                     Temperature {temperature.temp} °{unit}
@@ -78,8 +71,8 @@ function App() {
                 <div className="figure3">
                     <span class="low">
                         Low {temperature.low} °{unit}
-                    </span>{" "}
-                    ---{" "}
+                    </span>
+                        ---
                     <span class="high">
                         High {temperature.high} °{unit}
                     </span>
@@ -137,21 +130,13 @@ function App() {
     return useRef.current && Object.keys(dummy).length > 0 ? (
         <div className="App">
             <div className="banner">
-                <img
-                    className="logo"
-                    src="https://design-style-guide.freecodecamp.org/downloads/fcc_secondary_small.svg"
-                    alt="freeCodeCamp"
-                    loading="lazy"
-                /> =&gt; Show Local Weather 
+                <img className="logo" src="https://design-style-guide.freecodecamp.org/downloads/fcc_secondary_small.svg" alt="freeCodeCamp" loading="lazy" /> 
+                =&gt; Show Local Weather 
             </div>
             <Location />
             <Temperature />
 
-            <button
-                class="btn btn-primary"
-                type="button"
-                onClick={() => switchUnit(`${unit === "C" ? "F" : "C"}`)}
-            >
+            <button class="btn btn-primary" type="button" onClick={() => switchUnit(`${unit === "C" ? "F" : "C"}`)} >
                 Switch to °{unit === "C" ? "F" : "C"}
             </button>
         </div>
