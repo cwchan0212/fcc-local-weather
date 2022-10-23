@@ -53,7 +53,7 @@ package.json
     const [unit, setUnit] = React.useState("C");
 ```
 
-#### 2. Fetch data from freecodecamp weater api
+2. Fetch data from freecodecamp weater api
 
 ```
     const fetchData = async (coord) => {
@@ -73,7 +73,7 @@ package.json
     };
 ```
 
-#### 3. Use **useEffect** to call the function **navigator.geolocation** to obtaint the coordinates (**coord**) of the current location and fetch data with the function **fetchData**
+3. Use **useEffect** to call the function **navigator.geolocation** to obtaint the coordinates (**coord**) of the current location and fetch data with the function **fetchData**
 
 ```
     React.useEffect(() => {
@@ -87,7 +87,7 @@ package.json
     }, [coord]);
 ```
 
-#### 4. Create **Temperature** component to format the output of the temperature portion
+4. Create **Temperature** component to format the output of the temperature portion
 
 ```
     const Temperature = () => {
@@ -112,7 +112,7 @@ package.json
         };
 ```
 
-#### 5. Create **Location** component to format the output of the location portion
+5. Create **Location** component to format the output of the location portion
 
 ```
     const Location = () => {
@@ -138,7 +138,7 @@ package.json
     };
 ```
 
-##### 6. Calculate the temperature unit of **Celsius** to **Fahrenheit** with 2 decimal places
+6. Calculate the temperature unit of **Celsius** to **Fahrenheit** with 2 decimal places
 
 ```
     const switchToF = (num) => {
@@ -146,7 +146,7 @@ package.json
     };
 ```
 
-##### 7. Switch the temperature unit of **Celsius** to **Fahrenheit** and vice versa
+7. Switch the temperature unit of **Celsius** to **Fahrenheit** and vice versa
 
 ```
     const switchUnit = (unit) => {
@@ -163,13 +163,14 @@ package.json
     };
 ```
 
-##### 8. Return App function 
+8. Return **App** function 
 
 ```
     return useRef.current && Object.keys(dummy).length > 0 ? (
         <div className="App">
             <div className="banner">
-                <img className="logo" src="https://design-style-guide.freecodecamp.org/downloads/fcc_secondary_small.svg" alt="freeCodeCamp" loading="lazy" /> 
+                <img className="logo" src="https://design-style-guide.freecodecamp.org/downloads/fcc_secondary_small.svg" 
+                    alt="freeCodeCamp" loading="lazy" /> 
                 =&gt; Show Local Weather 
             </div>
             <Location />
@@ -184,6 +185,7 @@ package.json
     );
 ```
 ---
+
 ### Source Code
 
 **App.js**
