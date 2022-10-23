@@ -45,7 +45,7 @@ package.json
 ```
 ### Steps to complete the project
 
-##### 1. Set states of the coordinates (**coord**), dummy data (**dummy**), temperate unit (**unit**) 
+#### 1. Set states of the coordinates (**coord**), dummy data (**dummy**), temperate unit (**unit**) 
 
 ```
     const [coord, setCoord] = React.useState([]);
@@ -53,7 +53,7 @@ package.json
     const [unit, setUnit] = React.useState("C");
 ```
 
-##### 2. Fetch data from freecodecamp weater api
+#### 2. Fetch data from freecodecamp weater api
 
 ```
     const fetchData = async (coord) => {
@@ -73,7 +73,7 @@ package.json
     };
 ```
 
-##### 3. Use **useEffect** to call the function **navigator.geolocation** to obtaint the coordinates (**coord**) of the current location and fetch data with the function **fetchData**
+#### 3. Use **useEffect** to call the function **navigator.geolocation** to obtaint the coordinates (**coord**) of the current location and fetch data with the function **fetchData**
 
 ```
     React.useEffect(() => {
@@ -87,7 +87,7 @@ package.json
     }, [coord]);
 ```
 
-##### 4. Create **Temperature** component to format the output of the temperature portion
+#### 4. Create **Temperature** component to format the output of the temperature portion
 
 ```
     const Temperature = () => {
@@ -112,7 +112,7 @@ package.json
         };
 ```
 
-##### 5. Create **Location** component to format the output of the location portion
+#### 5. Create **Location** component to format the output of the location portion
 
 ```
     const Location = () => {
@@ -138,7 +138,7 @@ package.json
     };
 ```
 
-###### 6. Calculate the temperature unit of **Celsius** to **Fahrenheit** with 2 decimal places
+##### 6. Calculate the temperature unit of **Celsius** to **Fahrenheit** with 2 decimal places
 
 ```
     const switchToF = (num) => {
@@ -146,7 +146,7 @@ package.json
     };
 ```
 
-###### 7. Switch the temperature unit of **Celsius** to **Fahrenheit** and vice versa
+##### 7. Switch the temperature unit of **Celsius** to **Fahrenheit** and vice versa
 
 ```
     const switchUnit = (unit) => {
@@ -163,7 +163,7 @@ package.json
     };
 ```
 
-###### 8. Return App function 
+##### 8. Return App function 
 
 ```
     return useRef.current && Object.keys(dummy).length > 0 ? (
@@ -333,4 +333,60 @@ function App() {
 }
 
 export default App;
-***
+```
+
+**App.css**
+
+```
+.App {
+    text-align: center;
+}
+
+body {
+    background-color: whitesmoke;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.banner {
+  display: inline;
+  /* justify-content: center; */
+  justify-content: space-between;
+  margin: auto;
+}
+
+.logo {
+    /* align-items: center; */
+    width: 50px;
+}
+
+.icon {
+    margin: auto;
+    width: 200px;
+}
+
+.location {
+    font-size: 40px;
+}
+.figure1 {
+    font-size: 35px;
+}
+
+.low {
+    color: dodgerblue;
+}
+
+.high {
+    color: indianred;
+}
+
+.desc,
+.location {
+    padding-top: 10px;
+}
+
+.btn {
+    margin-top: 10px;
+}
+Footer
+```
