@@ -22,6 +22,7 @@ You can get feedback on your project by sharing it on the [freeCodeCamp forum](h
 
 ## File Structure
 
+```
 public/
 ├─ img/
 │  ├─ clear.svg
@@ -38,7 +39,7 @@ src/
 .gitignore
 package-lock.json
 package.json
-
+```
 
 
 
