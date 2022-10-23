@@ -18,4 +18,28 @@ When you are finished, include a link to your project on CodePen and click the "
 
 You can get feedback on your project by sharing it on the [freeCodeCamp forum](https://forum.freecodecamp.org/c/project-feedback/409).
 
+--
+
+## File Structure
+
+public/
+├─ img/
+│  ├─ clear.svg
+│  ├─ clouds.svg
+│  ├─ rain.svg
+│  ├─ snow.svg
+│  ├─ thunderstom.svg
+├─ index.html
+├─ favicon.ico
+src/
+├─ App.css
+├─ App.js
+├─ index.js
+.gitignore
+package-lock.json
+package.json
+
+
+
+
 Solution Link: https://bit.ly/3z76aG7
