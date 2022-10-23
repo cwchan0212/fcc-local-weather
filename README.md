@@ -45,7 +45,7 @@ package.json
 ```
 ### Steps to complete the project
 
-#### 1. Set states of the coordinates (**coord**), dummy data (**dummy**), temperate unit (**unit**) 
+1. Set states of the coordinates (**coord**), dummy data (**dummy**), temperate unit (**unit**) 
 
 ```
     const [coord, setCoord] = React.useState([]);
