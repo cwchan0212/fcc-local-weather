@@ -23,9 +23,9 @@ You can get feedback on your project by sharing it on the [freeCodeCamp forum](h
 
 ---
 
-## Folder Structure
+# Folder Structure
 
-```
+```sh
 public/
 ├─ img/
 │  ├─ clear.svg
@@ -43,19 +43,19 @@ src/
 package-lock.json
 package.json
 ```
-### Steps to complete the project
+# Steps to complete the project
 
-Step 1: Set states of the coordinates (**coord**), dummy data (**dummy**), temperate unit (**unit**) 
+## Step 1: Set states of the coordinates (**coord**), dummy data (**dummy**), temperate unit (**unit**) 
 
-```
+```js
     const [coord, setCoord] = React.useState([]);
     const [dummy, setDummy] = React.useState({});
     const [unit, setUnit] = React.useState("C");
 ```
 
-Step 2: Fetch data from freecodecamp weater api
+## Step 2: Fetch data from freecodecamp weater api
 
-```
+```sh
     const fetchData = async (coord) => {
         const [lat, lon] = coord;
         const base = "https://weather-proxy.freecodecamp.rocks/api/current";
@@ -73,9 +73,9 @@ Step 2: Fetch data from freecodecamp weater api
     };
 ```
 
-Step 3. Use **useEffect** to call the function **navigator.geolocation** to obtaint the coordinates (**coord**) of the current location and fetch data with the function **fetchData**
+## Step 3. Use **useEffect** to call the function **navigator.geolocation** to obtaint the coordinates (**coord**) of the current location and fetch data with the function **fetchData**
 
-```
+```js
     React.useEffect(() => {
         if (typeof coord[0] === "undefined") {
             navigator.geolocation.getCurrentPosition((position) => {
@@ -87,9 +87,9 @@ Step 3. Use **useEffect** to call the function **navigator.geolocation** to obta
     }, [coord]);
 ```
 
-4. Create **Temperature** component to format the output of the temperature portion
+## Step 4. Create **Temperature** component to format the output of the temperature portion
 
-```
+```js
     const Temperature = () => {
         const temperature = {
             date: new Date(dummy.dt * 1000).toISOString(),
@@ -112,9 +112,9 @@ Step 3. Use **useEffect** to call the function **navigator.geolocation** to obta
         };
 ```
 
-5. Create **Location** component to format the output of the location portion
+## Step 5. Create **Location** component to format the output of the location portion
 
-```
+```js
     const Location = () => {
         const location = {
             lat: dummy.coord.lat,
@@ -138,17 +138,17 @@ Step 3. Use **useEffect** to call the function **navigator.geolocation** to obta
     };
 ```
 
-6. Calculate the temperature unit of **Celsius** to **Fahrenheit** with 2 decimal places
+## Step 6. Calculate the temperature unit of **Celsius** to **Fahrenheit** with 2 decimal places
 
-```
+```js
     const switchToF = (num) => {
         return ((num * 9) / 5 + 32).toFixed(2);
     };
 ```
 
-7. Switch the temperature unit of **Celsius** to **Fahrenheit** and vice versa
+## Step 7. Switch the temperature unit of **Celsius** to **Fahrenheit** and vice versa
 
-```
+```js
     const switchUnit = (unit) => {
         let temp = dummy.main.temp;
         if (unit === "F") {
@@ -163,9 +163,9 @@ Step 3. Use **useEffect** to call the function **navigator.geolocation** to obta
     };
 ```
 
-8. Return **App** function 
+Step 8. Return **App** function 
 
-```
+```js
     return useRef.current && Object.keys(dummy).length > 0 ? (
         <div className="App">
             <div className="banner">
@@ -189,7 +189,7 @@ Step 3. Use **useEffect** to call the function **navigator.geolocation** to obta
 
 **App.js**
 
-```
+```js
 import React from "react";
 import "./App.css";
 
@@ -338,7 +338,7 @@ export default App;
 
 **App.css**
 
-```
+```css
 .App {
     text-align: center;
 }
