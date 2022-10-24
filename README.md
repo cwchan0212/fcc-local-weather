@@ -45,12 +45,13 @@ package.json
 ```
 # Steps to complete the project
 
-## Step 1: Set states of the coordinates (**coord**), dummy data (**dummy**), temperate unit (**unit**) 
+## Step 1: Set states of the coordinates (**coord**), dummy data (**dummy**), temperate unit (**unit**) as well as useRef to avoid unneccessary re-rendering
 
 ```js
     const [coord, setCoord] = React.useState([]);
     const [dummy, setDummy] = React.useState({});
     const [unit, setUnit] = React.useState("C");
+    const useRef = React.useRef(0);
 ```
 
 ## Step 2: Fetch data from freecodecamp weater api
