@@ -163,7 +163,7 @@ package.json
     };
 ```
 
-Step 8. Return **App** function 
+## Step 8. Return **App** function 
 
 ```js
     return useRef.current && Object.keys(dummy).length > 0 ? (
