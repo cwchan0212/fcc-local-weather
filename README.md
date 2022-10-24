@@ -45,7 +45,7 @@ package.json
 ```
 ### Steps to complete the project
 
-1. Set states of the coordinates (**coord**), dummy data (**dummy**), temperate unit (**unit**) 
+Step 1: Set states of the coordinates (**coord**), dummy data (**dummy**), temperate unit (**unit**) 
 
 ```
     const [coord, setCoord] = React.useState([]);
@@ -53,7 +53,7 @@ package.json
     const [unit, setUnit] = React.useState("C");
 ```
 
-2. Fetch data from freecodecamp weater api
+Step 2: Fetch data from freecodecamp weater api
 
 ```
     const fetchData = async (coord) => {
@@ -73,7 +73,7 @@ package.json
     };
 ```
 
-3. Use **useEffect** to call the function **navigator.geolocation** to obtaint the coordinates (**coord**) of the current location and fetch data with the function **fetchData**
+Step 3. Use **useEffect** to call the function **navigator.geolocation** to obtaint the coordinates (**coord**) of the current location and fetch data with the function **fetchData**
 
 ```
     React.useEffect(() => {
