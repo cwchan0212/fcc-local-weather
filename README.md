@@ -23,7 +23,7 @@ You can get feedback on your project by sharing it on the [freeCodeCamp forum](h
 
 ---
 
-## File Structure
+## Folder Structure
 
 ```
 public/
@@ -169,8 +169,7 @@ package.json
     return useRef.current && Object.keys(dummy).length > 0 ? (
         <div className="App">
             <div className="banner">
-                <img className="logo" src="https://design-style-guide.freecodecamp.org/downloads/fcc_secondary_small.svg" 
-                    alt="freeCodeCamp" loading="lazy" /> 
+                <img className="logo" src="https://design-style-guide.freecodecamp.org/downloads/fcc_secondary_small.svg" alt="freeCodeCamp" loading="lazy" /> 
                 =&gt; Show Local Weather 
             </div>
             <Location />
@@ -251,8 +250,7 @@ function App() {
         return temperature ? (
             <div className="container">
                 <div className="picture">
-                    <img className="icon" src={"img/" + temperature.main.toLowerCase() + ".svg"} 
-                        alt={temperature.desc} loading="lazy" />
+                    <img className="icon" src={"img/" + temperature.main.toLowerCase() + ".svg"} alt={temperature.desc} loading="lazy" />
                 </div>
                 <div className="figure1">
                     Temperature {temperature.temp} °{unit}
@@ -321,8 +319,7 @@ function App() {
     return useRef.current && Object.keys(dummy).length > 0 ? (
         <div className="App">
             <div className="banner">
-                <img className="logo" src="https://design-style-guide.freecodecamp.org/downloads/fcc_secondary_small.svg" 
-                    alt="freeCodeCamp" loading="lazy" /> 
+                <img className="logo" src="https://design-style-guide.freecodecamp.org/downloads/fcc_secondary_small.svg" alt="freeCodeCamp" loading="lazy" /> 
                 =&gt; Show Local Weather 
             </div>
             <Location />
